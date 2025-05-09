@@ -5,7 +5,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 export default function SearchBar() {
   const {
     siteConfig: {
-      themeConfig: { algolia },
+      themeConfig,
     },
   } = useDocusaurusContext();
 
@@ -52,8 +52,9 @@ export default function SearchBar() {
     prompts: {
       siteName: "Metamask",
       systemPrompt,
+      includeLlmsFile: true,
     },
   };
   // @ts-ignore
-  return <DocusaurusAISearch algoliaConfig={algolia} aiConfig={aiConfig} />;
+  return <DocusaurusAISearch themeConfig={themeConfig} aiConfig={aiConfig} />;
 }
