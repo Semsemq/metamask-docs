@@ -9,7 +9,10 @@ export default function SearchBar() {
     },
   } = useDocusaurusContext();
 
+  const apiKey = typeof window !== "undefined" ? (window as any).OPENAI_API_KEY || "" : "";
+
   console.log("process.env.OPENAI_API_KEY", process.env.OPENAI_API_KEY);
+  console.log("apiKey", apiKey);
 
   const systemPrompt =
     "You are a helpful Metamask expert assistant. Your goal is to provide detailed, accurate information about Metamask's integrations to developers.\n\n" +
@@ -34,7 +37,7 @@ export default function SearchBar() {
   const aiConfig = {
     // OpenAI API settings
     openAI: {
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: apiKey,
       model: "gpt-4.1",
       maxTokens: 32768,
       temperature: 0.45,
